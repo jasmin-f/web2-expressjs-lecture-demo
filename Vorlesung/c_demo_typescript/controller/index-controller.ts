@@ -1,9 +1,9 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
 
 
-import {securityService} from '../services/security-service';
-import {LoginSchema, userStore} from "../services/user-store";
-import {SchemaUtil} from "../utils/schema-util";
+import { securityService } from '../services/security-service';
+import { LoginSchema, userStore } from "../services/user-store";
+import { SchemaUtil } from "../utils/schema-util";
 
 
 export class IndexController {
@@ -12,7 +12,7 @@ export class IndexController {
             res.status(204).send();
             return;
         }
-        const {error, data} = LoginSchema.safeParse(req.body);
+        const { error, data } = LoginSchema.safeParse(req.body);
 
         if (data) {
             if (await userStore.authenticate(data)) {
@@ -22,7 +22,7 @@ export class IndexController {
                 res.status(401).json(false);
             }
         } else {
-            res.status(400).send({error: error});
+            res.status(400).send({ error: error });
             return;
         }
 
