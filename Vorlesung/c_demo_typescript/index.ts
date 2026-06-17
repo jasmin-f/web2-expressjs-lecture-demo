@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 
 // load config-file
-dotenv.config({ path: `.env${process.env.NODE_ENV ? `-${process.env.NODE_ENV}` : ''}`});
-(async () =>{
+dotenv.config({ path: `.env${process.env.NODE_ENV ? `-${process.env.NODE_ENV}` : ''}` });
+(async () => {
     const app = (await import('./app')).app;
 
 
@@ -10,9 +10,9 @@ dotenv.config({ path: `.env${process.env.NODE_ENV ? `-${process.env.NODE_ENV}` :
     const port = 3001;
 
     app.listen(port, hostname, (error: any) => { // TODO
-        if(error){
+        if (error) {
             console.error(error);
-        }else{
+        } else {
             console.log(`Server running at http://${hostname}:${port}/`);
         }
     });
