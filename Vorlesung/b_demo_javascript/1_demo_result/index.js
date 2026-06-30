@@ -26,8 +26,10 @@ function myDummyLogger(options = {}) {
     options = {timestamp: true, ...options};
 
     return function myInnerDummyLogger(req, res, next) {
+        // throw new Error("teste wann diese middleware auftaucht");
+
         const timestamp = options.timestamp ? new Date().toISOString() + " " : "";
-        console.log(`${timestamp}${req.method} ${req.url}`)
+        console.log(`${timestamp}${req.method} ${req.url}`);
         next();
     }
 }
@@ -38,6 +40,7 @@ app.use(myDummyLogger());
 app.use(router);
 app.use(express.static('./public'));
 app.use(notFound);
+// app.use(myDummyLogger()); // Hier macht es nichts kaputt mit Fehlermeldung
 app.use(errorHandler);
 
 function showIndex(req, res) {
